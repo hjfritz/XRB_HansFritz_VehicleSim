@@ -9,13 +9,13 @@ public class Hovering : MonoBehaviour
     [SerializeField] private float dampening = 5f;
 
     private Rigidbody rb;
-    private float lastHitDist;
+    private float _lastHitDist;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        lastHitDist = length;
+        _lastHitDist = length;
     }
 
     // Update is called once per frame
@@ -31,15 +31,15 @@ public class Hovering : MonoBehaviour
         }
         else
         {
-            lastHitDist = length * 1.1f;
+            _lastHitDist = length * 1.1f;
         }
     }
 
     private float HooksLawDampen(float hitDistance)
     {
-        float forceAmount = strength * (length - hitDistance) + (dampening * (lastHitDist = hitDistance));
+        float forceAmount = strength * (length - hitDistance) + (dampening * (_lastHitDist = hitDistance));
         forceAmount = Mathf.Max(0f, forceAmount);
-        lastHitDist = hitDistance;
+        _lastHitDist = hitDistance;
 
         return forceAmount;
     }
