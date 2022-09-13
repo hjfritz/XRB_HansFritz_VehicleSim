@@ -34,5 +34,16 @@ public class BikePitch : MonoBehaviour
         {
             bike.transform.Rotate(-rotateSpeed, 0, 0);
         }
+
+        if (hitBack.distance > 1.5 && hitFront.distance > 1.5)
+        {
+            if (bike.transform.rotation.x >= -90 + margin)
+            {
+                bike.transform.Rotate(-rotateSpeed, 0, 0);
+            }else if (bike.transform.rotation.x <= -90 - margin)
+            {
+                bike.transform.Rotate(rotateSpeed, 0, 0);
+            }
+        }
     }
 }
