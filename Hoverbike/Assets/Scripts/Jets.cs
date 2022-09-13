@@ -15,12 +15,12 @@ public class Jets : MonoBehaviour
     [SerializeField] private InputActionReference buttonPress;
     [SerializeField] private InputActionReference leftTriggerFloat;
     [SerializeField] private InputActionReference rightTriggerFloat;
+    [SerializeField] private GameObject bike;
     
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject turnParent;
     
     private bool _forward = false;
-
     private float TurnAmount = 0;
     
     // Start is called before the first frame update
@@ -39,24 +39,43 @@ public class Jets : MonoBehaviour
         {
             rb.AddForceAtPosition(transform.TransformDirection(Vector3.forward) * speed, transform.localPosition);
         }
+
+        // if (TurnAmount > -.1 || TurnAmount < .1)
+        // {
+        //     Debug.Log("stuff");
+        //     
+        //     if (bike.transform.rotation.z < 0)
+        //     {
+        //         bike.transform.Rotate(0,0,.5f, Space.Self);
+        //     }else if (bike.transform.rotation.z > 0)
+        //     {
+        //         bike.transform.Rotate(0,0,-.5f, Space.Self);
+        //     }
+        // }
     }
     
     private void TurnBikeRight(InputAction.CallbackContext obj)
     {
         TurnAmount = obj.ReadValue<float>();
         turnParent.transform.Rotate(0, TurnAmount, 0, Space.Self);
+        // if (bike.transform.rotation.z >= -30)
+        // {
+        //     bike.transform.Rotate(0, 0, -TurnAmount, Space.Self);
+        // }
     }
 
     private void TurnBikeLeft(InputAction.CallbackContext obj)
     {
         TurnAmount = obj.ReadValue<float>();
         turnParent.transform.Rotate(0, -TurnAmount, 0, Space.Self);
+        // if (bike.transform.rotation.z <= 30)
+        // {
+        //     bike.transform.Rotate(0, 0, TurnAmount, Space.Self);
+        // }
     }
     
     private void Move(InputAction.CallbackContext obj)
     {
-        Debug.Log("pressed");
-        
         if (_forward)
         {
             _forward = false;

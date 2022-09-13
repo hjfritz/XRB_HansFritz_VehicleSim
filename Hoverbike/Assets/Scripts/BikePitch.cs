@@ -13,7 +13,7 @@ public class BikePitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bike.transform.rotation = Quaternion.Euler(-90, 0, -180);
+        bike.transform.rotation = Quaternion.Euler(-90, -90, -90);
     }
 
     // Update is called once per frame
