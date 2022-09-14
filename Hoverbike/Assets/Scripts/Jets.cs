@@ -20,6 +20,10 @@ public class Jets : MonoBehaviour
     
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject turnParent;
+
+    [SerializeField] private AudioSource bikeSound;
+    [SerializeField] private AudioSource bikeStartSound;
+    [SerializeField] private AudioSource bikeBoostSound;
     
     private bool _forward = false;
     private float _turnAmount = 0;
@@ -61,16 +65,21 @@ public class Jets : MonoBehaviour
         if (_forward)
         {
             _forward = false;
+            bikeStartSound.Stop();
+            bikeSound.Stop();
         }
         else
         {
             _forward = true;
+            bikeStartSound.Play();
+            bikeSound.Play();
         }
     }
     
     private void Jump(InputAction.CallbackContext obj)
     {
         Debug.Log("pressed");
-        rb.AddForceAtPosition(transform.TransformDirection(Vector3.up) * jumpAmount, transform.localPosition, ForceMode.Impulse);
+        rb.AddForceAtPosition(transform.TransformDirection(Vector3.forward) * jumpAmount, transform.localPosition, ForceMode.Impulse);
+        bikeBoostSound.Play();
     }
 }
