@@ -214,6 +214,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "PrimaryButtonPress",
+                    "type": "Button",
+                    "id": "9d10c83c-26c3-4224-b29b-ff857abcfef2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -588,6 +597,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "TurnBikeLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b94fbd7-c638-4a4e-9dc8-2e1057572b48",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "PrimaryButtonPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

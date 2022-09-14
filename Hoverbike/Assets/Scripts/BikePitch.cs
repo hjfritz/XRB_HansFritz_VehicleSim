@@ -17,7 +17,7 @@ public class BikePitch : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         RaycastHit hitBack;
         RaycastHit hitFront;
@@ -35,7 +35,7 @@ public class BikePitch : MonoBehaviour
             bike.transform.Rotate(-rotateSpeed, 0, 0);
         }
 
-        if (hitBack.distance > 1.5 && hitFront.distance > 1.5)
+        if (hitBack.distance > 3 && hitFront.distance > 3)
         {
             if (bike.transform.rotation.x >= -90 + margin)
             {

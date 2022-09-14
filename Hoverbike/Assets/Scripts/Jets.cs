@@ -12,10 +12,11 @@ public class Jets : MonoBehaviour
 {
 
     [SerializeField] private float speed = .5f;
-    [SerializeField] private InputActionReference buttonPress;
+    [SerializeField] private InputActionReference buttonPressRight;
+    [SerializeField] private InputActionReference buttonPressLeft;
     [SerializeField] private InputActionReference leftTriggerFloat;
     [SerializeField] private InputActionReference rightTriggerFloat;
-    [SerializeField] private GameObject bike;
+    [SerializeField] private int jumpAmount = 1;
     
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject turnParent;
@@ -26,11 +27,13 @@ public class Jets : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buttonPress.action.performed += Move;
-        buttonPress.action.canceled += Move;
+        buttonPressRight.action.performed += Move;
+        buttonPressRight.action.canceled += Move;
         leftTriggerFloat.action.performed += TurnBikeLeft;
         rightTriggerFloat.action.performed += TurnBikeRight;
+        buttonPressLeft.action.performed += Jump;
     }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -63,5 +66,11 @@ public class Jets : MonoBehaviour
         {
             _forward = true;
         }
+    }
+    
+    private void Jump(InputAction.CallbackContext obj)
+    {
+        Debug.Log("pressed");
+        rb.AddForceAtPosition(transform.TransformDirection(Vector3.up) * jumpAmount, transform.localPosition, ForceMode.Impulse);
     }
 }
